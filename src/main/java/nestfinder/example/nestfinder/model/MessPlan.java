@@ -30,6 +30,10 @@ public class MessPlan {
 
     private String menu;
 
+    @Column(name = "average_rating")
+    private Double averageRating = 0.0;
+
+
     @ElementCollection
     @CollectionTable(name = "mess_photos", joinColumns = @JoinColumn(name = "mess_id"))
     @Column(name = "photo_url")

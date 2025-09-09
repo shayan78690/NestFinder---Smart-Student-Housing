@@ -30,6 +30,9 @@ public class Property {
 
     private String amenities;
 
+    @Column(name = "average_rating")
+    private Double averageRating = 0.0;
+
     @ElementCollection
     @CollectionTable(name = "property_photos", joinColumns = @JoinColumn(name = "property_id"))
     @Column(name = "photo_url")
