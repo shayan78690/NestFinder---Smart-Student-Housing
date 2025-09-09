@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
-
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
@@ -36,7 +35,11 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/properties/**").authenticated()
+                        .requestMatchers("/api/mess-plans/**").authenticated()
+                        .requestMatchers("/api/reviews/**").authenticated()
+                        .requestMatchers("/api/ml/**").authenticated()  // ML microservices secured
+                        .anyRequest().denyAll()
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
